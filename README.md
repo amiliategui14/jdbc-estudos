@@ -1,18 +1,28 @@
-## Getting Started
+# Catálogo com JDBC 🛒
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este projeto está sendo desenvolvido para consolidar meus primeiros estudos em **JDBC (Java Database Connectivity)**. Para sair dos exercícios isolados, apliquei os conceitos criando o backend do catálogo de um mini e-commerce (gerenciamento de produtos).
 
-## Folder Structure
+O foco principal foi entender como abrir conexões com um banco de dados e realizar as operações essenciais diretamente pelo Java.
 
-The workspace contains two folders by default, where:
+---
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## 🛠️ Tecnologias Utilizadas
+* **Java** 
+* **JDBC** 
+* **SQLite** 
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+---
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## 🎯 Conceitos de JDBC Praticados
 
-## Dependency Management
+Mesmo sendo um projeto inicial, o código está sendo aplicado com boas práticas de desenvolvimento:
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+* **Operações de CRUD Completas:**
+  * **C**reate: Cadastro de novos produtos no estoque.
+  * **R**ead: Listagem de todos os produtos e busca por ID.
+  * **U**pdate: Atualização de preços e quantidades.
+  * **D**elete: Remoção de produtos do catálogo.
+* **Segurança Base:** Uso de `PreparedStatement` para garantir que a inserção de dados seja segura contra SQL Injection.
+* **Organização das Consultas:** Escrita de comandos SQL (`INSERT`, `SELECT`, `UPDATE`, `DELETE`) integrados ao fluxo do Java.
+
+
