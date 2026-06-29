@@ -13,7 +13,7 @@ public class ProdutoDAO {
         this.CONEXAO_DB = conexao;
     }
 
-    //inserir novo produto no banco de dados
+    //Método inserir novo produto no banco de dados
     public void inserir(Produto produto) {
         String sql = "INSERT INTO produtos (nome_produto, quantidade, preco, status) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = CONEXAO_DB.prepareStatement(sql)) {
@@ -26,8 +26,8 @@ public class ProdutoDAO {
             System.err.println("Erro ao inserir produtos: " + e.getMessage());
         }
     }
-
-    //excluir todos os produtos do banco de dados
+ 
+    //Método excluir todos os produtos do banco de dados
     public void excluirTodos() {
         String sql = "DELETE FROM produtos";
         try (PreparedStatement stmt = CONEXAO_DB.prepareStatement(sql)) {
@@ -37,31 +37,32 @@ public class ProdutoDAO {
         }
     }
 
-    // consultar um produto pelo ID
-    public void consultarPorId(int id) {
-        String sql = "SELECT * FROM produtos WHERE id_produto = ?";
+    //Método consultar um produto pelo ID
+    public Produto consultarPorId(int id) {
+        String sql ="SELECT * FROM produtos WHERE id_produto = ?";
         try (PreparedStatement stmt = CONEXAO_DB.prepareStatement(sql)) {
-            ResultSet rs = stmt.executeQuery() {
-                stmt.setInt(1, id);
+            stmt.setInt(1, id); // definir parâmetro do ID antes de executar a consulta
+            try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     Produto produto = new Produto();
                     produto.setId(rs.getInt("id_produto"));
                     produto.setNome(rs.getString("nome_produto"));
                     produto.setQuantidade(rs.getInt("quantidade"));
-                    produto.setPreco(rs.getDouble("preco"));
+                    produto.setPreco(rs.getDouble("Preco"));
                     produto.setStatus(rs.getString("status"));
                     return produto;
-                } 
-            } catch (SQLException e) {
-                System.err.println("Erro ao consultar produto: " + e.getMessage());
+                }
             }
-            return null;
+        } catch (SQLException e) {
+            System.err.println("Erro ao consultar produto por ID: " + e.getMessage());
+        }
+        return null;
         }
 
-        //atualizar informações de um produto do banco de dados
+        //Método atualizar informações de um produto do banco de dados
         public void atualizar(Produto produto) {
             String sql = "UPDATE produtos SET nome_produto = ?, quantidade = ?, preco = ?, status = ? WHERE id_produto = ?";
-            try (PreparedStatemet stmt = CONEXAO_DB.prepareStatement(sql)) {
+            try (PreparedStatement stmt = CONEXAO_DB.prepareStatement(sql)) {
                 stmt.setString(1, produto.getNome());
                 stmt.setInt(2, produto.getQuantidade());
                 stmt.setDouble(3, produto.getPreco());
@@ -73,22 +74,25 @@ public class ProdutoDAO {
             }
         }
 
-        // excluir produto pelo id
+        // Método para excluir um produto pelo ID
         public void excluir(int id) {
             String sql = "DELETE FROM produtos WHERE id_produto = ?";
-            try (PreparedStatement stmt = CONEXAO_DB.prepareStatement(sql));
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("Erro ao excluir produto: " + e.getMessage());
-        }
-    }
 
-    // listar todos produtos do banco de dados
+            try (PreparedStatement stmt = CONEXAO_DB.prepareStatement(sql)) {
+
+                stmt.setInt(1, id);
+                stmt.executeUpdate();
+
+            } catch (SQLException e) {
+                System.err.println("Erro ao excluir produto: " + e.getMessage());
+            }
+        }
+
+    //Método listar todos produtos do banco de dados
     public List<Produto> listarTodos() {
         List<Produto> produtos = new ArrayList<>();
         String sql = "SELECT * FROM produtos";
-        try (PreparedStatement stmt = CONEXAO_DB.prepareStatement(sql));
+        try (PreparedStatement stmt = CONEXAO_DB.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Produto produto = new Produto();
@@ -97,10 +101,12 @@ public class ProdutoDAO {
                     produto.setQuantidade(rs.getInt("quantidade"));
                     produto.setPreco(rs.getDouble("preco"));
                     produto.setStatus(rs.getString("status"));
+                    produtos.add(produto);
                 }
             } catch (SQLException e) {
                 System.err.println("Erro ao listar produtos: " + e.getMessage());
             }
             return produtos;
-    }
+    } 
 }
+
