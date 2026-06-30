@@ -25,6 +25,8 @@ public class Main {
             //excluir por ID
             //produtoDAO.excluir(6);
 
+            //excluir Todos
+            //produtoDAO.excluirTodos();
 
         } catch (Exception e) {
             System.err.println("Erro geral: " + e.getMessage());
