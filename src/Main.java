@@ -6,6 +6,7 @@ public class Main {
         try (Connection conexao = ConexaoDB.conectar()) {
             ProdutoDAO produtoDAO = new ProdutoDAO(conexao);
 
+/* 
             //Lista todos os produtos
             mostrarProdutos(produtoDAO);
 
@@ -17,14 +18,20 @@ public class Main {
             produtoDAO.inserir(novoProduto1);
             produtoDAO.inserir(novoProduto2);
             produtoDAO.inserir(novoProduto3);
-
+*/
             // Lista todos os produtos após a inserção
             mostrarProdutos(produtoDAO);
 
             //Consulta po ID
-            Produto produtoConsultado = produtoDAO.consultarPorId(3);
+            Produto produtoConsultado = produtoDAO.consultarPorId(1);
             if (produtoConsultado != null) {
-                System.out.println("Produto encontrado: " + produtoConsultado.getNome());
+                
+                //método atualizar 
+                produtoConsultado.setNome("Monitor Gamer");
+                System.out.println("A base de dados ficou assim: ");
+                produtoDAO.atualizar(produtoConsultado);
+
+                mostrarProdutos(produtoDAO);
             } else {
                 System.out.println("Produto não encontrado");
             }            
