@@ -22,19 +22,10 @@ public class Main {
             // Lista todos os produtos após a inserção
             mostrarProdutos(produtoDAO);
 
-            //Consulta po ID
-            Produto produtoConsultado = produtoDAO.consultarPorId(1);
-            if (produtoConsultado != null) {
-                
-                //método atualizar 
-                produtoConsultado.setNome("Monitor Gamer");
-                System.out.println("A base de dados ficou assim: ");
-                produtoDAO.atualizar(produtoConsultado);
+            //excluir por ID
+            //produtoDAO.excluir(6);
 
-                mostrarProdutos(produtoDAO);
-            } else {
-                System.out.println("Produto não encontrado");
-            }            
+
         } catch (Exception e) {
             System.err.println("Erro geral: " + e.getMessage());
         }
