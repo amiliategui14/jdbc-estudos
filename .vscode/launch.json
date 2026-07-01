@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "jdbc-estudos_e05c982f"
+        },
+        {
+            "type": "java",
+            "name": "Executar ProdutoGUI",
+            "request": "launch",
+            "mainClass": "ProdutoGUI",
+            "vmArgs": "--module-path \"C:\\Java\\javafx-sdk-22.0.1\\lib\" --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+}
